@@ -1,23 +1,23 @@
 let menuItem = document.querySelectorAll('.menu-item'),
+    li = document.createElement('li'),
+    text = document.createTextNode('Пятый пункт'),
+    menu = document.querySelector('.menu'),
     title = document.querySelector('.title'),
     col = document.querySelectorAll('.column'),
-    adv = document.querySelector('.adv')
-    // menu = document.querySelector('.menu'),
-    // text = document.createTextNode('Пятый пункт');
-
+    adv = document.querySelector('.adv');
+    
 menuItem[1].textContent = 'Второй пункт';
 menuItem[2].textContent = 'Третий пункт';
+
+li.classList.add('menu-item');
+li.appendChild(text);
+menu.appendChild(li);
+
+document.body.style.backgroundImage = 'url(../img/apple_true.jpg)';
 
 title.textContent = 'Мы продаем только подлинную технику Apple';
 
 col[1].removeChild(adv);
 
-// console.log(menu);
+// Спросить у пользователя отношение к технике apple и записать ответ в блок на странице с id "prompt"
 
-// menuItem[5] = document.createElement('li');
-// menu.className = 'menu-item';
-// menu.appendChild(text);
-
-// console.log(menu);
-
-// Нужно понять как вставить нужную html разметку в нужное место? 
