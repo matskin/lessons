@@ -10,10 +10,18 @@ menuItem[2].textContent = 'Третий пункт';
 
 title.textContent = 'Мы продаем только подлинную технику Apple';
 
-// menu = document.createElement('li');
-// menu.className = 'menu-item';
-// menu.appendChild(text);
+menu = document.createElement('li');
+menu.className = 'menu-item';
+menu.appendChild(text);
+
+menuItem = document.querySelectorAll('.menu-item');
 
 // console.log(menu-item[5]);  // Есть непонимание, нужно разобраться
 
-// document.col.removeChild(adv); // Нужно разобраться с DOM более досконально
+col[1].removeChild(adv); // Нужно разобраться с DOM более досконально
+
+// console.log(col[1]);
+
+console.log(menuItem);
+console.log(menu);
+
