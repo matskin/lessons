@@ -1,27 +1,23 @@
 let menuItem = document.querySelectorAll('.menu-item'),
     title = document.querySelector('.title'),
-    menu = document.querySelector('.menu'),
-    text = document.createTextNode('Пятый пункт')
     col = document.querySelectorAll('.column'),
-    adv = document.querySelector('.adv');
+    adv = document.querySelector('.adv')
+    // menu = document.querySelector('.menu'),
+    // text = document.createTextNode('Пятый пункт');
 
 menuItem[1].textContent = 'Второй пункт';
 menuItem[2].textContent = 'Третий пункт';
 
 title.textContent = 'Мы продаем только подлинную технику Apple';
 
-menu = document.createElement('li');
-menu.className = 'menu-item';
-menu.appendChild(text);
+col[1].removeChild(adv);
 
-menuItem = document.querySelectorAll('.menu-item');
+// console.log(menu);
 
-// console.log(menu-item[5]);  // Есть непонимание, нужно разобраться
+// menuItem[5] = document.createElement('li');
+// menu.className = 'menu-item';
+// menu.appendChild(text);
 
-col[1].removeChild(adv); // Нужно разобраться с DOM более досконально
+// console.log(menu);
 
-// console.log(col[1]);
-
-console.log(menuItem);
-console.log(menu);
-
+// Нужно понять как вставить нужную html разметку в нужное место? 
