@@ -26,6 +26,10 @@ let startBtn = document.getElementById("start"),
 
 let money, time;
 
+expensesBtn.disabled = true;
+optionalExpensesBtn.disabled = true;
+countBtn.disabled = true;
+
 startBtn.addEventListener('click', function() {
     time = prompt ("Введите дату в формате YYYY-MM-DD", "");
     money = +prompt ("Ваш бюджет на месяц?", "");
@@ -36,29 +40,29 @@ startBtn.addEventListener('click', function() {
     appData.budget = money;
     appData.timeData = time;
     budgetValue.textContent = money.toFixed();
-
     yearValue.value = new Date(Date.parse(time)).getFullYear();
     monthValue.value = new Date(Date.parse(time)).getMonth() + 1;
     dayValue.value = new Date(Date.parse(time)).getDate();
+
+    expensesBtn.disabled = false;
+    optionalExpensesBtn.disabled = false;
+    countBtn.disabled = false;
 });
     
 expensesBtn.addEventListener('click', function() {
     let sum = 0;
-
     for (let i = 0; i < expensesItem.length; i++) {
         let a = expensesItem[i].value,
             b = expensesItem[++i].value;
     
         if ( typeof(a)==='string' && typeof(a) != null && typeof(b) != null && a != "" && b != "" && a.length < 50) {
-            console.log ("done");
             appData.expenses[a] = b;
             sum += +b;
         } else {
-            console.log ("bad result");
             i--;
         }
+        expensesValue.textContent = sum;
     }
-    expensesValue.textContent = sum;
 });
 
 optionalExpensesBtn.addEventListener('click', function() {
@@ -71,9 +75,8 @@ optionalExpensesBtn.addEventListener('click', function() {
 
 countBtn.addEventListener('click', function() {
     if (appData.budget != undefined) {
-        appData.moneyPerDay = (appData.budget / 30).toFixed();
+        appData.moneyPerDay = ((appData.budget  - +expensesValue.textContent) / 30).toFixed();
         dayBudgetValue.textContent = appData.moneyPerDay;
-
         if (appData.moneyPerDay < 100) {
             levelValue.textContent = "Это минимальный уровень достатка!";
         } else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) {
@@ -90,8 +93,10 @@ countBtn.addEventListener('click', function() {
 
 incomeItem.addEventListener('input', function() {
     let items = incomeItem.value;
+    if (isNaN(items) || items != '') {
     appData.income = items.split(', ');
     incomeValue.textContent = appData.income;
+    }
 });
 
 checkSavings.addEventListener('click', function() {
@@ -106,10 +111,8 @@ sumValue.addEventListener('input', function() {
     if (appData.savings == true) {
         let sum = +sumValue.value,
             percent = +percentValue.value;
-        
         appData.monthIncome = sum/100/12*percent;
         appData.yearIncome = sum/100*percent;
-
         monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
         yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
     }
@@ -119,10 +122,8 @@ percentValue.addEventListener('input', function() {
     if (appData.savings == true) {
         let sum = +sumValue.value,
             percent = +percentValue.value;
-        
         appData.monthIncome = sum/100/12*percent;
         appData.yearIncome = sum/100*percent;
-
         monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
         yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
     }
